@@ -9,3 +9,7 @@ The CASCADE Engine is a general purpose 2D/3D game engine. The purpose of this e
 ## Sources
 - https://lazyfoo.net/tutorials/SDL/index.php
   - Tutorials on SDL were foundational in the creation of the CASCADE Engine
+- https://www.spriters-resource.com/turbografx_16/godzillabattlelegends/sheet/53341/
+  - Godzilla sprites grabbed by Burninggodzillalord from Godzilla Battle Legends used for testing sprite features
+- https://www.spriters-resource.com/pc_computer/kindredspiritsontheroof/sheet/149997/
+  - Background images grabbed by AvocadoBxstard from Kindred Sprits on the Roof

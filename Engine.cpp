@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Sprite.h"
 #include <iostream>
 
 
@@ -24,6 +25,13 @@ bool Engine::init()
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         std::cout << "ERROR: Could not initialize SDL! SDL_Error: " << SDL_GetError() << std::endl;
+        return(false);
+    }
+
+    // Initializing SDL_image
+    if (!(IMG_Init(IMG_INIT_PNG) && IMG_INIT_PNG))
+    {
+        std::cout << "ERROR: Could not initialize SDL_image! SDL_Error: " << IMG_GetError() << std::endl;
         return(false);
     }
 
@@ -55,7 +63,8 @@ void Engine::close()
     mainWindow = nullptr;
     mainRenderer = nullptr;
 
-    // Quits the SDL subsystem
+    // Quits the SDL subsystems
+    IMG_Quit();
     SDL_Quit();
 }
 
@@ -67,6 +76,16 @@ void Engine::startGame()
 
     // Flag for quitting the game
     bool bQuitFlag = false;
+
+    // Sprite for testing
+    Sprite testGodzilla;
+    SDL_Rect firstSpriteRect = { 29, 31, 99, 84 };
+    testGodzilla.loadImage("Images/Sprites/godzilla.png", mainRenderer);
+    testGodzilla.setScale(4);
+
+    // Sprite background for testing
+    Sprite testBackground;
+    testBackground.loadImage("Images/Backgrounds/testBackground.png", mainRenderer);
 
     // Main gameplay loop
     while (!bQuitFlag)
@@ -95,7 +114,15 @@ void Engine::startGame()
 
         // Setting the default render color and clearing screen
         SDL_SetRenderDrawColor(mainRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-        SDL_RenderPresent(mainRenderer);
         SDL_RenderClear(mainRenderer);
+
+        // Renders background sprite
+        testBackground.render(0, 0, mainRenderer);
+
+        // Renders sprite
+        testGodzilla.render(160, 60, mainRenderer, &firstSpriteRect);
+
+        // Renders to screen
+        SDL_RenderPresent(mainRenderer);
     }
 }
