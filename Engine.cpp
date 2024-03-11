@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "Sprite.h"
+#include "Vector3D.h"
 #include <iostream>
 
 class InputGrabber
@@ -425,6 +426,14 @@ void Engine::close()
 // Contains the gameplay loop (Input, Process, Output)
 void Engine::startGame()
 {
+    // Vector testing start
+
+    Vector3D TestVec1({1.0f, 2.0f, 3.0f, 0.0f});
+
+    TestVec1.print();
+
+    // Vector testing end
+
     // Event manager
     SDL_Event e;
 
